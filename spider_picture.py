@@ -10,8 +10,8 @@ url = 'http://www.mzitu.com/page/'
 # 当前项目路径
 cur_path = os.getcwd() + '/'
 
-# 设置报头,Http协议
-header = {'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36'}
+# 设置报头,Http协议,增加参数Refer对付防盗链设置
+header = {'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36','Referer': "http://www.mzitu.com/"}
 
 # 爬取的预览页面数量
 preview_page_cnt = 1
