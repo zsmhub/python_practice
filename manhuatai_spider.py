@@ -3,8 +3,8 @@
 爬取漫画台的漫画图片,需手动配置参数:self.img_src
 
 Author: Insomnia
-Version: 0.0.1
-Date: 2017-09-08
+Version: 0.0.2
+Date: 2017-09-29
 Language: Python3.6.2
 Editor: Sublime Text3
 '''
@@ -30,22 +30,48 @@ class ManHuaTai(object):
     '''
 
     def __init__(self):
-        self.url = 'http://www.manhuatai.com/'
+        # self.url = 'http://www.manhuatai.com/'
         self.img_src = {
+            # _*_ 未完结系列 _*_
+            # 已连载至622话
+            # '斗破苍穹': {'url': 'http://mhpic.zymkcdn.com/comic/D%2F%E6%96%97%E7%A0%B4%E8%8B%8D%E7%A9%B9%2F619%E8%AF%9DSM%2F1.jpg-mht.middle', 'zero': False, 'num': '619'},
+
+            # 已连载至15话
             # '逆转木兰辞' : {'url': 'http://mhpic.zymkcdn.com/comic/N%2F%E9%80%86%E8%BD%AC%E6%9C%A8%E5%85%B0%E8%BE%9E%2F15%E8%AF%9DGQ%2F1.jpg-mht.middle', 'zero': True, 'num': 6},
 
-            # '砂与海之歌': {'url': 'http://mhpic.zymkcdn.com/comic/S%2F%E7%A0%82%E4%B8%8E%E6%B5%B7%E4%B9%8B%E6%AD%8C%2F53%E8%AF%9DSM%2F1.jpg-mht.middle', 'zero': True},
-
-            # 已完结
-            '勇者的心' : {'url': 'http://mhpic.zymkcdn.com/comic/Y%2F%E5%8B%87%E8%80%85%E7%9A%84%E5%BF%83%2F1%E8%AF%9D%2F1.jpg-mht.middle', 'zero': False}
-
-            # '斗破苍穹': {'url': 'http://mhpic.zymkcdn.com/comic/D%2F%E6%96%97%E7%A0%B4%E8%8B%8D%E7%A9%B9%2F619%E8%AF%9DSM%2F1.jpg-mht.middle', 'zero': False, 'num': '619'},
+            # 已连载至52话
+            # '砂与海之歌': {'url': 'http://mhpic.zymkcdn.com/comic/S%2F%E7%A0%82%E4%B8%8E%E6%B5%B7%E4%B9%8B%E6%AD%8C%2F01%E8%AF%9D%2F1.jpg-mht.middle', 'zero': True},
 
             # 已连载至25话
             # '天降系拍档': {'url': 'http://mhpic.zymkcdn.com/comic/T%2F%E5%A4%A9%E9%99%8D%E7%B3%BB%E6%8B%8D%E6%A1%A3%2F2%E8%AF%9D%2F1.jpg-mht.middle', 'zero': False},
 
             # 已连载至72话
-            # '勇者是女孩': {'url': 'http://mhpic.zymkcdn.com/comic/Y%2F%E5%8B%87%E8%80%85%E6%98%AF%E5%A5%B3%E5%AD%A9%2F70%E8%AF%9D%2F1.jpg-mht.middle', 'zero': False}
+            # '勇者是女孩': {'url': 'http://mhpic.zymkcdn.com/comic/Y%2F%E5%8B%87%E8%80%85%E6%98%AF%E5%A5%B3%E5%AD%A9%2F70%E8%AF%9D%2F1.jpg-mht.middle', 'zero': False},
+
+            # _*_ 已完结系列 _*_
+            # 共32话
+            # '勇者的心' : {'url': 'http://mhpic.zymkcdn.com/comic/Y%2F%E5%8B%87%E8%80%85%E7%9A%84%E5%BF%83%2F1%E8%AF%9D%2F1.jpg-mht.middle', 'zero': False}
+
+            # 共165话
+            # '暴走邻家': {'url': 'http://mhpic.zymkcdn.com/comic/B%2F%E6%9A%B4%E8%B5%B0%E9%82%BB%E5%AE%B6%2F01%E8%AF%9D%2F1.jpg-mht.middle', 'zero': True, 'num': 92},
+
+            # 搞笑、恋爱
+            '公子不要啊': {'url': 'http://mhpic.zymkcdn.com/comic/G%2F%E5%85%AC%E5%AD%90%E4%B8%8D%E8%A6%81%E5%95%8A%2F44%E8%AF%9D%2F3.jpg-mht.middle', 'zero': False},
+
+            ## --- 需修改img_special为 self.img_special = ('V')
+            # '送快递这件破事儿': {'url': 'http://mhpic.zymkcdn.com/comic/S%2F%E9%80%81%E5%BF%AB%E9%80%92%E8%BF%99%E4%BB%B6%E7%A0%B4%E4%BA%8B%E5%84%BF%2F1%E8%AF%9DV%2F1.jpg-zymk.middle', 'zero': False},
+
+            # 玄幻
+            '魁拔': {'url': 'http://mhpic.zymkcdn.com/comic/K%2F%E9%AD%81%E6%8B%94%2F1%E8%AF%9D%2F1.jpg-mht.middle', 'zero': False},
+            '猫又': {'url': 'http://mhpic.zymkcdn.com/comic/M%2F%E7%8C%AB%E5%8F%88%2F1%E8%AF%9D%2F1.jpg-mht.middle', 'zero': False},
+
+            # 后宫
+            '月华玫瑰杀': {'url': 'http://mhpic.zymkcdn.com/comic/Y%2F%E6%9C%88%E5%8D%8E%E7%8E%AB%E7%91%B0%E6%9D%80%2F1%E8%AF%9DV%2F1.jpg-mht.middle', 'zero': False},
+
+            '土星玩具店': {'url': 'http://mhpic.zymkcdn.com/comic/T%2F%E5%9C%9F%E6%98%9F%E7%8E%A9%E5%85%B7%E5%BA%97%2F1%E8%AF%9D%2F1.jpg-mht.middle', 'zero': False},
+
+            # 修真热血
+            '风起苍岚': {'url': 'http://mhpic.zymkcdn.com/comic/F%2F%E9%A3%8E%E8%B5%B7%E8%8B%8D%E5%B2%9A%2F1%E8%AF%9D%2F2.jpg-mht.middle', 'zero': False}
         }
         # self.img_special = ('', 'GQ', 'SM')
         self.img_special = ('', 'GQ')
@@ -63,6 +89,9 @@ class ManHuaTai(object):
     def removedirs(sef, path):
         '''
         递归删除文件夹
+
+        Args: 
+            path: 目录路径
         '''
         if os.path.exists(path):
             os.removedirs(path)
@@ -177,16 +206,19 @@ class ManHuaTai(object):
         print('-'*60, '爬虫开始: %s' % begin_time, '-'*60, sep="\n")
 
         # 遍历爬取多部漫画
-        for cartoon in self.img_src:
-            print('正在爬取漫画：%s ...' % cartoon)
-            # 创建动漫名文件夹
-            cur_img_path = img_path + '/' + cartoon
-            self.mkdir(cur_img_path)
-            self.download_img(self.img_src[cartoon], cur_img_path)
-            time.sleep(60) # 睡眠60s，防止ip被封
-            print('报告主人，%s : 爬好了，我休息一会...' % cartoon)
-
-        print('-'*60, '爬虫结束 %s ~ %s' % (begin_time, self.get_time()), '-'*60, sep="\n")
+        try:
+            for cartoon in self.img_src:
+                print('正在爬取漫画：%s ...' % cartoon)
+                # 创建动漫名文件夹
+                cur_img_path = img_path + '/' + cartoon
+                self.mkdir(cur_img_path)
+                self.download_img(self.img_src[cartoon], cur_img_path)
+                time.sleep(60) # 睡眠60s，防止ip被封
+                print('报告主人，%s : 爬好了，我休息一会...' % cartoon)
+        except Exception as e:
+            print('捕获异常: ', e)
+        finally:
+            print('-'*60, '爬虫结束 %s ~ %s' % (begin_time, self.get_time()), '-'*60, sep="\n")
 
 if __name__ == '__main__':
     ManHuaTai = ManHuaTai()
