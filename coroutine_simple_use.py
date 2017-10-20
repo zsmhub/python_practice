@@ -3,7 +3,7 @@
 实现协程的简单使用
 
 Author: Insomnia
-Version: 0.0.1
+Version: 0.0.2
 Date: 2017-10-20
 Language: Python3.6.2
 Editor: Sublime Text3
@@ -25,6 +25,7 @@ start =  now()
 loop = asyncio.get_event_loop() # 事件循环
 tasks = [asyncio.ensure_future(do_some_work(var)) for var in (1, 2, 4)] # asyncio.ensure_future()获取协程对象返回值
 loop.run_until_complete(asyncio.wait(tasks)) # 将协程注册到事件循环，并启动事件循环
+loop.close()
 
 for task in tasks:
     print('Task ret: %s' % task.result())
