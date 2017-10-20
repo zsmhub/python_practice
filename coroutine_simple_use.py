@@ -24,8 +24,10 @@ start =  now()
 
 loop = asyncio.get_event_loop() # 事件循环
 tasks = [asyncio.ensure_future(do_some_work(var)) for var in (1, 2, 4)] # asyncio.ensure_future()获取协程对象返回值
-loop.run_until_complete(asyncio.wait(tasks)) # 将协程注册到事件循环，并启动事件循环
-loop.close()
+try:
+    loop.run_until_complete(asyncio.wait(tasks)) # 将协程注册到事件循环，并启动事件循环
+finally:
+    loop.close() # 关闭事件循环
 
 for task in tasks:
     print('Task ret: %s' % task.result())
