@@ -43,7 +43,7 @@ class Log:
             logname = self.get_time('%Y%m')
 
         # 文件路径
-        logname = self.logpath + logname + '.log'
+        logname = self.logpath + str(logname) + '.log'
 
         # 创建一个logger
         logger = logging.getLogger(__name__)
@@ -76,6 +76,10 @@ class Log:
             logger.critical(logtext)
         else:
             logger.info(logtext)
+
+        # 记录日志之后移除句柄
+        logger.removeHandler(fh)
+        logger.removeHandler(sh)
 
     def mkdir(self, path):
         '''
