@@ -10,8 +10,8 @@ import logging
 import os
 import time
 
-# 当前项目路径
-cur_path = os.getcwd() + '/'
+# 当前脚本目录
+cur_path = os.path.split(os.path.realpath(__file__))[0] + '/'
 
 # 默认日志保存路径
 log_path = cur_path + 'logs/'
