@@ -1,0 +1,29 @@
+# 测试数据库配置
+db:
+  hostname: 127.0.0.1
+  username: root
+  password: root
+  database: database name
+
+# 邮箱发件人
+addresser:
+  host: host
+  port: 465
+  user: your email
+  password: your password
+
+# 邮箱收件人
+receiver:
+  - your email
+
+# 系统名称
+system_name: 你的系统名称
+
+# 公司提供的腾讯开放平台账号
+accounts:
+  公司a:
+    username: 账号
+    password: 密码
+  公司b:
+    username: 账号
+    password: 密码
